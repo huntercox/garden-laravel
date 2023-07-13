@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Plant;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -15,7 +16,7 @@ class PlantController extends Controller
 	public function index(): Response
 	{
 		return Inertia::render('Plants/Index', [
-			//
+			'plants' => Plant::with('user:id,name')->latest()->get(),
 		]);
 	}
 
@@ -24,15 +25,23 @@ class PlantController extends Controller
 	 */
 	public function create()
 	{
-		//
+		return Inertia::render('Plants/Create', [
+			//
+		]);
 	}
 
 	/**
 	 * Store a newly created resource in storage.
 	 */
-	public function store(Request $request)
+	public function store(Request $request): RedirectResponse
 	{
-		//
+		$validated = $request->validate([
+			'name' => 'required|string|max:40',
+		]);
+
+		$request->user()->plants()->create($validated);
+
+		return redirect(route('plants.index'));
 	}
 
 	/**
