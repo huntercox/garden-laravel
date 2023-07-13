@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Plant;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+use Inertia\Inertia;
+use Inertia\Response;
 
 class PlantController extends Controller
 {
@@ -13,7 +14,9 @@ class PlantController extends Controller
 	 */
 	public function index(): Response
 	{
-		return response('Hello, Plant World! 🌱');
+		return Inertia::render('Plants/Index', [
+			//
+		]);
 	}
 
 	/**
