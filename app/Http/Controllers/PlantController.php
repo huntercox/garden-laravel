@@ -79,8 +79,12 @@ class PlantController extends Controller
 	/**
 	 * Remove the specified resource from storage.
 	 */
-	public function destroy(Plant $plant)
+	public function destroy(Plant $plant): RedirectResponse
 	{
-		//
+		$this->authorize('delete', $plant);
+
+		$plant->delete();
+
+		return redirect(route('plants.index'));
 	}
 }

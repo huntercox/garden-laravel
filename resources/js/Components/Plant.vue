@@ -1,5 +1,6 @@
 <script setup>
 import Dropdown from '@/Components/Dropdown.vue';
+import DropdownLink from '@/Components/DropdownLink.vue';
 import InputError from '@/Components/InputError.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import { useForm } from '@inertiajs/vue3';
@@ -44,6 +45,9 @@ const editing = ref(false);
 							@click="editing = true">
 							Edit
 						</button>
+						<DropdownLink as="button" :href="route('plants.destroy', plant.id)" method="delete">
+							Delete
+						</DropdownLink>
 					</template>
 				</Dropdown>
 			</div>

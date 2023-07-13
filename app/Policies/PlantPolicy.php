@@ -45,7 +45,7 @@ class PlantPolicy
 	 */
 	public function delete(User $user, Plant $plant): bool
 	{
-		//
+		return $this->update($user, $plant);
 	}
 
 	/**
