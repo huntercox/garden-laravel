@@ -63,9 +63,17 @@ class PlantController extends Controller
 	/**
 	 * Update the specified resource in storage.
 	 */
-	public function update(Request $request, Plant $plant)
+	public function update(Request $request, Plant $plant): RedirectResponse
 	{
-		//
+		$this->authorize('update', $plant);
+
+		$validated = $request->validate([
+			'name' => 'required|string|max:40',
+		]);
+
+		$plant->update($validated);
+
+		return redirect(route('plants.index'));
 	}
 
 	/**
