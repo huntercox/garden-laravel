@@ -21,6 +21,7 @@ const props = defineProps(['plant']);
 const form = useForm({
 	name: props.plant.name,
 	date_planted: props.plant.date_planted,
+	days_to_mature: props.plant.days_to_mature
 });
 
 const editing = ref(false);
@@ -66,9 +67,17 @@ const editing = ref(false);
 				@submit.prevent="form.put(route('plants.update', plant.id), { onSuccess: () => editing = false })">
 				<input v-model="form.name" type="text"
 					class="mt-4 w-full text-gray-900 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm" />
+				<InputError :name="form.errors.name" class="mt-2" />
+
 				<input v-model="form.date_planted" type="date"
 					class="mt-4 w-full text-gray-900 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm" />
 				<InputError :date_planted="form.errors.date_planted" class="mt-2" />
+
+
+				<input v-model="form.days_to_mature" type="text"
+					class="mt-4 w-full text-gray-900 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm" />
+				<InputError :days_to_mature="form.errors.days_to_mature" class="mt-2" />
+
 				<div class="space-x-2">
 					<PrimaryButton class="mt-4">Save</PrimaryButton>
 					<button class="mt-4" @click="editing = false; form.reset(); form.clearErrors()">Cancel</button>
@@ -79,6 +88,7 @@ const editing = ref(false);
 				<p class="mt-4 text-lg text-gray-900"><span class="block text-sm font-medium text-slate-700">Date Planted</span>
 					{{ dayjs(plant.date_planted).format('LL') }}
 				</p>
+				<p class="mt-4 text-lg text-gray-900">{{ plant.days_to_mature }}</p>
 			</div>
 		</div>
 	</div>

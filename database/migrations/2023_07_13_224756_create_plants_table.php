@@ -16,6 +16,7 @@ return new class extends Migration
 			$table->foreignId('user_id')->constrained()->cascadeOnDelete();
 			$table->string('name');
 			$table->date('date_planted');
+			$table->tinyInteger('days_to_mature');
 			$table->timestamps();
 		});
 	}
