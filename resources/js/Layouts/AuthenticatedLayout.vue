@@ -22,7 +22,7 @@ const showingNavigationDropdown = ref(false);
 							<div class="shrink-0 flex items-center">
 								<Link :href="route('dashboard')">
 								<div class="bg-white">
-									<p class="p-10 text-2xl">🌱</p>
+									<p class="px-10 p-4 text-2xl">🌱</p>
 								</div>
 								</Link>
 							</div>

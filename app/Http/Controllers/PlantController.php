@@ -37,6 +37,7 @@ class PlantController extends Controller
 	{
 		$validated = $request->validate([
 			'name' => 'required|string|max:40',
+			'date_planted' => 'required|date',
 		]);
 
 		$request->user()->plants()->create($validated);
@@ -69,6 +70,7 @@ class PlantController extends Controller
 
 		$validated = $request->validate([
 			'name' => 'required|string|max:40',
+			'date_planted' => 'required|date',
 		]);
 
 		$plant->update($validated);

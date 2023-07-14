@@ -6,6 +6,7 @@ import { useForm, Head } from '@inertiajs/vue3';
 
 const form = useForm({
 	name: '',
+	date_planted: '',
 });
 </script>
 
@@ -20,6 +21,9 @@ const form = useForm({
 				<input v-model="form.name" placeholder="Name" type="text"
 					class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm" />
 				<InputError :name="form.errors.name" class="mt-2" />
+				<input v-model="form.date_planted" type="date"
+					class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm" />
+				<InputError :date_planted="form.errors.date_planted" class="mt-2" />
 				<PrimaryButton class="mt-4">Add Plant</PrimaryButton>
 			</form>
 		</div>

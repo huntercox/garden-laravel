@@ -10,6 +10,7 @@ const props = defineProps(['plant']);
 
 const form = useForm({
 	name: props.plant.name,
+	date_planted: props.plant.date_planted,
 });
 
 const editing = ref(false);
@@ -61,7 +62,11 @@ const editing = ref(false);
 					<button class="mt-4" @click="editing = false; form.reset(); form.clearErrors()">Cancel</button>
 				</div>
 			</form>
-			<p v-else class="mt-4 text-lg text-gray-900">{{ plant.name }}</p>
+			<div v-else>
+				<p class="mt-4 text-lg text-gray-900">{{ plant.name }}</p>
+				<p class="mt-4 text-lg text-gray-900"><span class="block text-sm font-medium text-slate-700">Date Planted</span>
+					{{ plant.date_planted }}</p>
+			</div>
 		</div>
 	</div>
 </template>
