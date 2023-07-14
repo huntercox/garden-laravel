@@ -6,6 +6,16 @@ import PrimaryButton from '@/Components/PrimaryButton.vue';
 import { useForm } from '@inertiajs/vue3';
 import { ref } from 'vue';
 
+import dayjs from 'dayjs';
+
+// Relative Dates
+import relativeTime from 'dayjs/plugin/relativeTime';
+dayjs.extend(relativeTime);
+
+// Formatting
+import localizedFormat from 'dayjs/plugin/localizedFormat';
+dayjs.extend(localizedFormat)
+
 const props = defineProps(['plant']);
 
 const form = useForm({
@@ -67,7 +77,8 @@ const editing = ref(false);
 			<div v-else>
 				<p class="mt-4 text-lg text-gray-900">{{ plant.name }}</p>
 				<p class="mt-4 text-lg text-gray-900"><span class="block text-sm font-medium text-slate-700">Date Planted</span>
-					{{ plant.date_planted }}</p>
+					{{ dayjs(plant.date_planted).format('LL') }}
+				</p>
 			</div>
 		</div>
 	</div>
