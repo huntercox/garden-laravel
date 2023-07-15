@@ -31,41 +31,8 @@ const editing = ref(false);
 </script>
 
 <template>
-	<div class="p-4 flex space-x-2 bg-green-100 border-solid border-green-500 border-2">
-		<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600 -scale-x-100" fill="none" viewBox="0 0 24 24"
-			stroke="currentColor" stroke-width="2">
-			<path stroke-linecap="round" stroke-linejoin="round"
-				d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-		</svg>
+	<div class="p-2 pt-4 flex space-x-2 bg-green-100 border-solid border-green-500 border-2">
 		<div class="flex-1">
-			<div class="flex justify-between items-center">
-				<div>
-					<span class="text-gray-800">{{ plant.user.name }}</span>
-					<small class="ml-2 text-sm text-gray-600">{{ new Date(plant.created_at).toLocaleString() }}</small>
-					<small v-if="plant.created_at !== plant.updated_at" class="text-sm text-gray-600"> &middot; edited</small>
-				</div>
-				<Dropdown v-if="plant.user.id === $page.props.auth.user.id">
-					<template #trigger>
-						<button>
-							<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400" viewBox="0 0 20 20"
-								fill="currentColor">
-								<path
-									d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
-							</svg>
-						</button>
-					</template>
-					<template #content>
-						<button
-							class="block w-full px-4 py-2 text-left text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:bg-gray-100 transition duration-150 ease-in-out"
-							@click="editing = true">
-							Edit
-						</button>
-						<DropdownLink as="button" :href="route('plants.destroy', plant.id)" method="delete">
-							Delete
-						</DropdownLink>
-					</template>
-				</Dropdown>
-			</div>
 			<form v-if="editing"
 				@submit.prevent="form.put(route('plants.update', plant.id), { onSuccess: () => editing = false })">
 				<input v-model="form.name" type="text"
@@ -97,35 +64,71 @@ const editing = ref(false);
 
 			<!-- Main Plant content -->
 			<div v-else>
-				<div class="cols">
-					<div class="col1">
-						<p class="text-2xl font-black mt-4 text-gray-900">{{ plant.name }}</p>
-						<p class="text-lg mt-1 text-gray-600">{{ plant.variety }}</p>
+				<div class="flex">
+					<div class="flex-initial w-full px-2">
+						<p class="text-2xl font-black text-gray-900">{{ plant.name }}</p>
+						<p class="text-lg text-gray-600">{{ plant.variety }}</p>
 
-						<p class="mt-4 text-lg text-gray-900"><span class="block text-sm font-black text-green-600">Time to
-								Maturity</span>
-							{{ plant.days_to_mature }} days
-						</p>
+						<div class="flex">
+							<p class="py-1 px-2 border-solid border-2 border-green-600 rounded mt-4 mt-4 text-lg text-gray-900"><span
+									class="block text-sm font-black text-green-600">Time to
+									Maturity</span>
+								{{ plant.days_to_mature }} days
+							</p>
 
-						<p class="mt-4 text-lg text-gray-900"><span class="block text-sm font-black text-green-600">Date
+							<p class="py-1 px-2 border-solid border-2 border-green-600 rounded mt-4 ml-5 text-lg text-gray-900"><span
+									class="block text-sm font-black text-green-600">Quantity</span>
+								x{{ plant.quantity }}
+							</p>
+						</div>
+
+
+						<p class="py-1 px-2 border-solid border-2 border-green-600 rounded mt-4 mt-4 text-lg text-gray-900"><span
+								class="block text-sm font-black text-green-600">Date
 								Planted</span>
 							{{ dayjs(plant.date_planted).format('LL') }}
 						</p>
 
-						<p class="mt-4 text-lg text-gray-900"><span class="block text-sm font-black text-green-600">Quantity</span>
-							x{{ plant.quantity }}
-						</p>
 
-						<p class="mt-4 text-lg text-gray-900"><span class="block text-sm font-black text-green-600">Est. Harvest
+						<p class="py-1 px-2 border-solid border-2 border-green-600 rounded mt-4 mt-4 text-lg text-gray-900"><span
+								class="block text-sm font-black text-green-600">Est. Harvest
 								Date:</span>
 							{{ dayjs(dayjs(plant.date_planted).add(plant.days_to_mature, 'day')).format('LL') }}
 						</p>
 					</div>
-					<div class="col2">
+
+					<div class="flex-initial w-full p-2">
 						<img v-bind:src="plant.file_input" />
 					</div>
 				</div>
 
+			</div>
+
+			<div class="flex flex-end justify-between items-center">
+				<div>
+					<small v-if="plant.created_at !== plant.updated_at" class="text-sm text-gray-600"> &middot; edited</small>
+				</div>
+				<Dropdown v-if="plant.user.id === $page.props.auth.user.id">
+					<template #trigger>
+						<button>
+							<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400" viewBox="0 0 20 20"
+								fill="currentColor">
+								<path
+									d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
+							</svg>
+						</button>
+					</template>
+					<template #content>
+						<button
+							class="block w-full px-4 py-2 text-left text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:bg-gray-100 transition duration-150 ease-in-out"
+							@click="editing = true">
+							Edit
+						</button>
+						<DropdownLink as="button" :href="route('plants.destroy', plant.id)" method="delete">
+							Delete
+						</DropdownLink>
+					</template>
+				</Dropdown>
 			</div>
 		</div>
 	</div>
