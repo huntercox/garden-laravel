@@ -24,11 +24,14 @@ const form = useForm({
 	days_to_mature: props.plant.days_to_mature
 });
 
+// Harvest Date
+// const harvestDate = dayjs(harvestDateRaw).format('LL');
+// console.log(harvestDate);
 const editing = ref(false);
 </script>
 
 <template>
-	<div class="p-6 flex space-x-2">
+	<div class="p-4 flex space-x-2 bg-green-100 border-solid border-green-500 border-2">
 		<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600 -scale-x-100" fill="none" viewBox="0 0 24 24"
 			stroke="currentColor" stroke-width="2">
 			<path stroke-linecap="round" stroke-linejoin="round"
@@ -84,11 +87,19 @@ const editing = ref(false);
 				</div>
 			</form>
 			<div v-else>
-				<p class="mt-4 text-lg text-gray-900">{{ plant.name }}</p>
-				<p class="mt-4 text-lg text-gray-900"><span class="block text-sm font-medium text-slate-700">Date Planted</span>
+				<p class="text-2xl font-black mt-4 text-gray-900">{{ plant.name }}</p>
+				<p class="mt-4 text-lg text-gray-900"><span class="block text-sm font-black text-green-600">Date Planted</span>
 					{{ dayjs(plant.date_planted).format('LL') }}
 				</p>
-				<p class="mt-4 text-lg text-gray-900">{{ plant.days_to_mature }}</p>
+				<p class="mt-4 text-lg text-gray-900"><span class="block text-sm font-black text-green-600">Time to
+						Maturity</span>
+					{{ plant.days_to_mature }} days
+				</p>
+
+				<p class="mt-4 text-lg text-gray-900"><span class="block text-sm font-black text-green-600">Est. Harvest
+						Date:</span>
+					{{ dayjs(dayjs(plant.date_planted).add(plant.days_to_mature, 'day')).format('LL') }}
+				</p>
 			</div>
 		</div>
 	</div>
