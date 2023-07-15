@@ -71,6 +71,10 @@ const editing = ref(false);
 					class="mt-4 w-full text-gray-900 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm" />
 				<InputError :name="form.errors.name" class="mt-2" />
 
+				<input v-model="form.variety" placeholder="Variety" type="text" name="variety"
+					class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mb-3" />
+				<InputError :variety="form.errors.variety" class="mt-2" />
+
 				<input v-model="form.date_planted" type="date"
 					class="mt-4 w-full text-gray-900 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm" />
 				<InputError :date_planted="form.errors.date_planted" class="mt-2" />
@@ -80,19 +84,32 @@ const editing = ref(false);
 					class="mt-4 w-full text-gray-900 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm" />
 				<InputError :days_to_mature="form.errors.days_to_mature" class="mt-2" />
 
+				<input v-model="form.quantity" placeholder="Quantity" type="number" name="quantity"
+					class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm text-gray-500 mb-3" />
+				<InputError :quantity="form.errors.quantity" class="mt-2" />
+
 				<div class="space-x-2">
 					<PrimaryButton class="mt-4">Save</PrimaryButton>
 					<button class="mt-4" @click="editing = false; form.reset(); form.clearErrors()">Cancel</button>
 				</div>
 			</form>
+
+			<!-- Main Plant content -->
 			<div v-else>
 				<p class="text-2xl font-black mt-4 text-gray-900">{{ plant.name }}</p>
-				<p class="mt-4 text-lg text-gray-900"><span class="block text-sm font-black text-green-600">Date Planted</span>
-					{{ dayjs(plant.date_planted).format('LL') }}
-				</p>
+				<p class="text-lg mt-1 text-gray-600">{{ plant.variety }}</p>
+
 				<p class="mt-4 text-lg text-gray-900"><span class="block text-sm font-black text-green-600">Time to
 						Maturity</span>
 					{{ plant.days_to_mature }} days
+				</p>
+
+				<p class="mt-4 text-lg text-gray-900"><span class="block text-sm font-black text-green-600">Date Planted</span>
+					{{ dayjs(plant.date_planted).format('LL') }}
+				</p>
+
+				<p class="mt-4 text-lg text-gray-900"><span class="block text-sm font-black text-green-600">Quantity</span>
+					x{{ plant.quantity }}
 				</p>
 
 				<p class="mt-4 text-lg text-gray-900"><span class="block text-sm font-black text-green-600">Est. Harvest
