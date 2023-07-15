@@ -37,12 +37,18 @@ class PlantController extends Controller
 	{
 		$validated = $request->validate([
 			'name' => 'required|string|max:40',
-			'variety' => 'required|string|max:80',
+			'variety' => 'string|max:80',
 			'date_planted' => 'required|date',
 			'days_to_mature' => 'required|integer|max_digits:3',
 			'quantity' => 'required|integer|max_digits:2',
+			'file_input' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
 		]);
 
+
+		$fileName = $request->name  . '.' . $request->date_planted . '.' . $request->file_input->getClientOriginalExtension();
+		$path = $request->file_input->move('uploads', $fileName);
+		// $request->merge(['file_input' => $path]);
+		$validated['file_input'] = $path;
 		$request->user()->plants()->create($validated);
 
 		return redirect(route('plants.index'));
@@ -77,6 +83,7 @@ class PlantController extends Controller
 			'date_planted' => 'required|date',
 			'days_to_mature' => 'required|integer|max_digits:3',
 			'quantity' => 'required|integer|max_digits:2',
+			'file_input' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
 		]);
 
 		$plant->update($validated);

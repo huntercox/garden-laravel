@@ -31,14 +31,20 @@ Route::get('/dashboard', function () {
 	return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+
 Route::resource('plants', PlantController::class)
 	// ->only(['index', 'store', 'create'])
 	->middleware(['auth', 'verified']);
+
 
 Route::middleware('auth')->group(function () {
 	Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
 	Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
 	Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::get('phpmyinfo', function () {
+	phpinfo();
+})->name('phpmyinfo');
 
 require __DIR__ . '/auth.php';

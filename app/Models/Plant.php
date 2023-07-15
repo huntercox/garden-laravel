@@ -16,6 +16,7 @@ class Plant extends Model
 		'date_planted',
 		'days_to_mature',
 		'quantity',
+		'file_input',
 	];
 
 	public function user(): BelongsTo

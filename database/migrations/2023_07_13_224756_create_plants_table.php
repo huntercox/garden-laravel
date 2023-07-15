@@ -19,6 +19,7 @@ return new class extends Migration
 			$table->date('date_planted');
 			$table->tinyInteger('days_to_mature');
 			$table->tinyInteger('quantity');
+			$table->string('file_input');
 			$table->timestamps();
 		});
 	}

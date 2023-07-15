@@ -24,6 +24,7 @@ const form = useForm({
 	date_planted: props.plant.date_planted,
 	days_to_mature: props.plant.days_to_mature,
 	quantity: props.plant.quantity,
+	file_input: props.plant.file_input,
 });
 
 const editing = ref(false);
@@ -96,26 +97,35 @@ const editing = ref(false);
 
 			<!-- Main Plant content -->
 			<div v-else>
-				<p class="text-2xl font-black mt-4 text-gray-900">{{ plant.name }}</p>
-				<p class="text-lg mt-1 text-gray-600">{{ plant.variety }}</p>
+				<div class="cols">
+					<div class="col1">
+						<p class="text-2xl font-black mt-4 text-gray-900">{{ plant.name }}</p>
+						<p class="text-lg mt-1 text-gray-600">{{ plant.variety }}</p>
 
-				<p class="mt-4 text-lg text-gray-900"><span class="block text-sm font-black text-green-600">Time to
-						Maturity</span>
-					{{ plant.days_to_mature }} days
-				</p>
+						<p class="mt-4 text-lg text-gray-900"><span class="block text-sm font-black text-green-600">Time to
+								Maturity</span>
+							{{ plant.days_to_mature }} days
+						</p>
 
-				<p class="mt-4 text-lg text-gray-900"><span class="block text-sm font-black text-green-600">Date Planted</span>
-					{{ dayjs(plant.date_planted).format('LL') }}
-				</p>
+						<p class="mt-4 text-lg text-gray-900"><span class="block text-sm font-black text-green-600">Date
+								Planted</span>
+							{{ dayjs(plant.date_planted).format('LL') }}
+						</p>
 
-				<p class="mt-4 text-lg text-gray-900"><span class="block text-sm font-black text-green-600">Quantity</span>
-					x{{ plant.quantity }}
-				</p>
+						<p class="mt-4 text-lg text-gray-900"><span class="block text-sm font-black text-green-600">Quantity</span>
+							x{{ plant.quantity }}
+						</p>
 
-				<p class="mt-4 text-lg text-gray-900"><span class="block text-sm font-black text-green-600">Est. Harvest
-						Date:</span>
-					{{ dayjs(dayjs(plant.date_planted).add(plant.days_to_mature, 'day')).format('LL') }}
-				</p>
+						<p class="mt-4 text-lg text-gray-900"><span class="block text-sm font-black text-green-600">Est. Harvest
+								Date:</span>
+							{{ dayjs(dayjs(plant.date_planted).add(plant.days_to_mature, 'day')).format('LL') }}
+						</p>
+					</div>
+					<div class="col2">
+						<img v-bind:src="plant.file_input" />
+					</div>
+				</div>
+
 			</div>
 		</div>
 	</div>
