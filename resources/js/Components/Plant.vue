@@ -20,13 +20,12 @@ const props = defineProps(['plant']);
 
 const form = useForm({
 	name: props.plant.name,
+	variety: props.plant.variety,
 	date_planted: props.plant.date_planted,
-	days_to_mature: props.plant.days_to_mature
+	days_to_mature: props.plant.days_to_mature,
+	quantity: props.plant.quantity,
 });
 
-// Harvest Date
-// const harvestDate = dayjs(harvestDateRaw).format('LL');
-// console.log(harvestDate);
 const editing = ref(false);
 </script>
 

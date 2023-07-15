@@ -12,8 +12,10 @@ class Plant extends Model
 
 	protected $fillable = [
 		'name',
+		'variety',
 		'date_planted',
 		'days_to_mature',
+		'quantity',
 	];
 
 	public function user(): BelongsTo

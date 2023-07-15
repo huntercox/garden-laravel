@@ -15,8 +15,10 @@ return new class extends Migration
 			$table->id();
 			$table->foreignId('user_id')->constrained()->cascadeOnDelete();
 			$table->string('name');
+			$table->string('variety');
 			$table->date('date_planted');
 			$table->tinyInteger('days_to_mature');
+			$table->tinyInteger('quantity');
 			$table->timestamps();
 		});
 	}

@@ -37,8 +37,10 @@ class PlantController extends Controller
 	{
 		$validated = $request->validate([
 			'name' => 'required|string|max:40',
+			'variety' => 'required|string|max:80',
 			'date_planted' => 'required|date',
 			'days_to_mature' => 'required|integer|max_digits:3',
+			'quantity' => 'required|integer|max_digits:2',
 		]);
 
 		$request->user()->plants()->create($validated);
@@ -71,8 +73,10 @@ class PlantController extends Controller
 
 		$validated = $request->validate([
 			'name' => 'required|string|max:40',
+			'variety' => 'required|string|max:80',
 			'date_planted' => 'required|date',
 			'days_to_mature' => 'required|integer|max_digits:3',
+			'quantity' => 'required|integer|max_digits:2',
 		]);
 
 		$plant->update($validated);
