@@ -11,8 +11,23 @@ const form = useForm({
 	days_to_mature: '',
 	quantity: '',
 	file_input: '',
+	stages: [
+		{
+			stageName: ''
+		}
+	]
 });
 
+function addStage(e) {
+	form.stages.push({
+		stageName: ''
+	})
+	e.preventDefault();
+}
+
+function remove(index) {
+	form.stages.splice(index, 1);
+}
 </script>
 
 <template>
@@ -65,8 +80,24 @@ const form = useForm({
 					<!-- <InputError :file_input="form.errors.file_input" class="mt-2" /> -->
 				</label>
 
+				Stages of Growth
 
-				<PrimaryButton class="mt-4">Add Plant</PrimaryButton>
+				<div v-for="stage in form.stages" :key="index">
+					<div class="flex justify-start">
+						<input v-model="stage.stageName" />
+						<button type="button" class="ml-2 rounded-md border px-3 py-2 bg-red-600 text-white" @click="remove(index)"
+							v-show="index != 0">
+							Remove
+						</button>
+					</div>
+
+				</div>
+
+				<div>
+					<button type="button" @click="addStage">Add Stage</button>
+				</div>
+
+				<PrimaryButton class="block mt-4 bg-green-500">Add Plant</PrimaryButton>
 			</form>
 		</div>
 	</AuthenticatedLayout>

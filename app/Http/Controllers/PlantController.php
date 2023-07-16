@@ -43,6 +43,7 @@ class PlantController extends Controller
 			'days_to_mature' => 'required|integer|max_digits:3',
 			'quantity' => 'required|integer|max_digits:2',
 			'file_input' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+			'stages' => 'array:stageName'
 		]);
 
 		$path = $request->file_input->store('', 'public_images');
