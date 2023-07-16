@@ -43,6 +43,8 @@ class PlantController extends Controller
 		if (!$validated) {
 			return redirect(route('plants.create'));
 		} else {
+			$path = $request->file_input->store('', 'public_images');
+			$validated['file_input'] = $path;
 			$request->user()->plants()->create($validated);
 			return redirect(route('plants.index'))->with('message', 'Plant created successfully!');
 		}
