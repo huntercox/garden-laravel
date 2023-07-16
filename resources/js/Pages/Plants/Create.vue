@@ -33,14 +33,6 @@ const form = useForm({
 	<AuthenticatedLayout>
 		<div class="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
 			<h1>Create a new plant</h1>
-			<div v-if="message" class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md my-3"
-				role="alert">
-				<div class="flex">
-					<div>
-						<p class="text-sm">{{ message }}</p>
-					</div>
-				</div>
-			</div>
 			<form @submit.prevent="form.post(route('plants.store'), { onSuccess: () => form.reset() })">
 				<label for="name">
 					Name
