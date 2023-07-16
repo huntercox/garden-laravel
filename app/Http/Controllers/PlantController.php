@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\PlantStoreRequest;
 
 class PlantController extends Controller
 {
@@ -34,23 +36,16 @@ class PlantController extends Controller
 	/**
 	 * Store a newly created resource in storage.
 	 */
-	public function store(Request $request): RedirectResponse
+	public function store(PlantStoreRequest $request)
 	{
-		$validated = $request->validate([
-			'name' => 'required|string|max:40',
-			'variety' => 'string|max:80',
-			'date_planted' => 'required|date',
-			'days_to_mature' => 'required|integer|max_digits:3',
-			'quantity' => 'required|integer|max_digits:2',
-			'file_input' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-			'stages' => 'array:stageName'
-		]);
+		$validated = $request->validated();
 
-		$path = $request->file_input->store('', 'public_images');
-		$validated['file_input'] = $path;
-		$request->user()->plants()->create($validated);
-
-		return redirect(route('plants.index'));
+		if (!$validated) {
+			return redirect(route('plants.create'));
+		} else {
+			$request->user()->plants()->create($validated);
+			return redirect(route('plants.index'))->with('message', 'Plant created successfully!');
+		}
 	}
 
 	/**
