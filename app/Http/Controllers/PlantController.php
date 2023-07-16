@@ -7,6 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
+use Illuminate\Support\Facades\Storage;
 
 class PlantController extends Controller
 {
@@ -44,10 +45,7 @@ class PlantController extends Controller
 			'file_input' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
 		]);
 
-
-		$fileName = $request->name  . '.' . $request->date_planted . '.' . $request->file_input->getClientOriginalExtension();
-		$path = $request->file_input->move('uploads', $fileName);
-		// $request->merge(['file_input' => $path]);
+		$path = $request->file_input->store('', 'public_images');
 		$validated['file_input'] = $path;
 		$request->user()->plants()->create($validated);
 
@@ -77,14 +75,20 @@ class PlantController extends Controller
 	{
 		$this->authorize('update', $plant);
 
+		// dd($request->file_input);
+
 		$validated = $request->validate([
 			'name' => 'required|string|max:40',
 			'variety' => 'required|string|max:80',
 			'date_planted' => 'required|date',
 			'days_to_mature' => 'required|integer|max_digits:3',
 			'quantity' => 'required|integer|max_digits:2',
-			'file_input' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+			'file_input' => 'image|mimes:jpeg,png,jpg,gif,svg',
 		]);
+
+		// Storage::disk('public_images')->delete($plant->file_input);
+		$path = $request->file_input->store('', 'public_images');
+		$validated['file_input'] = $path;
 
 		$plant->update($validated);
 
