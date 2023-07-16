@@ -24,7 +24,8 @@ const form = useForm({
 	date_planted: props.plant.date_planted,
 	days_to_mature: props.plant.days_to_mature,
 	quantity: props.plant.quantity,
-	file_input: ''
+	file_input: null,
+	_method: 'put',
 });
 
 const editing = ref(false);
@@ -34,7 +35,7 @@ const editing = ref(false);
 	<div class="p-2 pt-4 flex space-x-2 bg-green-100 border-solid border-green-500 border-2">
 		<div class="flex-1">
 			<form v-if="editing"
-				@submit.prevent="form.put(route('plants.update', plant.id), { onSuccess: () => editing = false })">
+				@submit.prevent="form.post(route('plants.update', plant.id), { onSuccess: () => editing = false })">
 				<label for="name">
 					Name
 					<input v-model="form.name" placeholder="Name" type="text" name="name"
@@ -72,7 +73,7 @@ const editing = ref(false);
 
 				<label for="file_input">
 					Image
-					<input type="file" name="file_input" @input="form.file_input = $event.target.files[0]"
+					<input type="file" @input="form.file_input = $event.target.files[0]"
 						class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm text-gray-500 mb-3" />
 					<!-- <InputError :file_input="form.errors.file_input" class="mt-2" /> -->
 				</label>
