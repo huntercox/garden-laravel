@@ -86,7 +86,7 @@ class PlantController extends Controller
 			'file_input' => 'image|mimes:jpeg,png,jpg,gif,svg',
 		]);
 
-		// Storage::disk('public_images')->delete($plant->file_input);
+		Storage::disk('public_images')->delete($plant->file_input);
 		$path = $request->file_input->store('', 'public_images');
 		$validated['file_input'] = $path;
 
