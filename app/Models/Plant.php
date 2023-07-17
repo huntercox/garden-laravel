@@ -19,6 +19,10 @@ class Plant extends Model
 		'file_input',
 	];
 
+	protected $casts = [
+		'date_planted' => 'date',
+	];
+
 	public function user(): BelongsTo
 	{
 		return $this->belongsTo(User::class);

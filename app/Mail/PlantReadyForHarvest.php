@@ -8,6 +8,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use App\Models\Plant;
 
 class PlantReadyForHarvest extends Mailable
 {
@@ -17,7 +18,7 @@ class PlantReadyForHarvest extends Mailable
 	/**
 	 * Create a new message instance.
 	 */
-	public function __construct()
+	public function __construct(public readonly Plant $plant)
 	{
 	}
 
@@ -37,7 +38,7 @@ class PlantReadyForHarvest extends Mailable
 	public function content(): Content
 	{
 		return new Content(
-			view: 'view.name',
+			view: 'emails.plants.harvest',
 		);
 	}
 
