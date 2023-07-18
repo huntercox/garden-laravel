@@ -102,7 +102,7 @@ onMounted(() => {
 			<div v-else>
 				<div class="flex">
 					<div class="flex-initial w-full px-2">
-						<p class="text-2xl font-black text-gray-900">{{ plant.name }}</p>
+						<p class="text-3xl font-black text-gray-900">{{ plant.name }}</p>
 						<p class="text-lg text-gray-600">{{ plant.variety }}</p>
 
 						<div class="flex">
@@ -125,10 +125,11 @@ onMounted(() => {
 							{{ dayjs(plant.date_planted).format('LL') }}
 						</p>
 
-						<p class="py-1 px-2 border-solid border-2 border-green-600 rounded mt-4 mt-4 text-lg text-gray-900"><span
-								class="block text-sm font-black text-green-600">Est. Harvest
-								Date:
-								<strong v-if="harvestDateIsPastOrToday" class="text-gray-900 font-black">HARVEST TIME 🌾!</strong></span>
+						<p class="py-2 px-2 border-solid border-2 border-green-600 rounded mt-4 mt-4 text-lg text-gray-900 relative">
+							<span class="block text-sm font-black text-green-600">Est. Harvest Date:
+								<strong v-if="harvestDateIsPastOrToday"
+									class="px-2 py-1 mt-2 font-black bg-gray-900 text-white absolute top-2 right-1 text-lg">HARVEST
+									TIME</strong></span>
 							{{ dayjs(plant.harvest_date).format('LL') }}
 
 						</p>
@@ -136,7 +137,7 @@ onMounted(() => {
 
 					<div class="flex-initial w-full p-2">
 						<!-- <img v-bind:src="{'storage/'.plant.file_input" /> -->
-						<img v-bind:src="'storage/images/' + plant.file_input" />
+						<img class="w-full" v-bind:src="'storage/images/' + plant.file_input" />
 					</div>
 				</div>
 
