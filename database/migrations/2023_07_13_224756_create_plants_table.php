@@ -20,6 +20,7 @@ return new class extends Migration
 			$table->tinyInteger('days_to_mature');
 			$table->tinyInteger('quantity');
 			$table->string('file_input');
+			$table->date('harvest_date');
 			$table->timestamps();
 		});
 	}

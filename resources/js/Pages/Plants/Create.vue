@@ -3,6 +3,8 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import InputError from '@/Components/InputError.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import { useForm, Head } from '@inertiajs/vue3';
+
+
 defineProps({
 	message: String,
 });
@@ -62,6 +64,8 @@ const form = useForm({
 					<InputError :message="form.errors.days_to_mature" class="mt-2" />
 				</label>
 
+
+
 				<label for="quantity">
 					Quantity
 					<input v-model="form.quantity" placeholder="Quantity" type="number" name="quantity"
@@ -75,23 +79,6 @@ const form = useForm({
 						class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm text-gray-500 mb-3" />
 					<InputError :message="form.errors.file_input" class="mt-2" />
 				</label>
-
-				<!-- Stages of Growth
-
-				<div v-for="stage in form.stages" :key="index">
-					<div class="flex justify-start">
-						<input v-model="stage.stageName" />
-						<button type="button" class="ml-2 rounded-md border px-3 py-2 bg-red-600 text-white" @click="remove(index)"
-							v-show="index != 0">
-							Remove
-						</button>
-					</div>
-
-				</div>
-
-				<div>
-					<button type="button" @click="addStage">Add Stage</button>
-				</div> -->
 
 				<PrimaryButton class="block mt-4 bg-green-500">Add Plant</PrimaryButton>
 			</form>

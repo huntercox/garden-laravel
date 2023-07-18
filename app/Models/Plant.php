@@ -17,6 +17,7 @@ class Plant extends Model
 		'days_to_mature',
 		'quantity',
 		'file_input',
+		'harvest_date',
 	];
 
 	protected $casts = [

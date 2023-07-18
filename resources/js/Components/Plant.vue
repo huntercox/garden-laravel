@@ -111,11 +111,10 @@ const editing = ref(false);
 							{{ dayjs(plant.date_planted).format('LL') }}
 						</p>
 
-
 						<p class="py-1 px-2 border-solid border-2 border-green-600 rounded mt-4 mt-4 text-lg text-gray-900"><span
 								class="block text-sm font-black text-green-600">Est. Harvest
 								Date:</span>
-							{{ dayjs(dayjs(plant.date_planted).add(plant.days_to_mature, 'day')).format('LL') }}
+							{{ dayjs(plant.harvest_date).format('LL') }}
 						</p>
 					</div>
 

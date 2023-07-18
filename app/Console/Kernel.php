@@ -23,7 +23,6 @@ class Kernel extends ConsoleKernel
 			Plant::with('user')->get()->each(function (Plant $plant) {
 
 				if ($plant->date_planted->addDays($plant->days_to_mature)->isToday()) {
-
 					Mail::to($plant->user->email)->send(new PlantReadyForHarvest($plant));
 				}
 			});

@@ -10,6 +10,7 @@ use Inertia\Response;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\PlantStoreRequest;
+use Illuminate\Support\Carbon;
 
 class PlantController extends Controller
 {
@@ -40,11 +41,18 @@ class PlantController extends Controller
 	{
 		$validated = $request->validated();
 
+		$date_planted = Carbon::createFromDate($request->date_planted);
+		$days_to_mature = $request->days_to_mature;
+
+		$harvest_date = $date_planted->addDays($days_to_mature);
+
 		if (!$validated) {
 			return redirect(route('plants.create'));
 		} else {
 			$path = $request->file_input->store('', 'public_images');
 			$validated['file_input'] = $path;
+			$validated['harvest_date'] = $harvest_date;
+
 			$request->user()->plants()->create($validated);
 			return redirect(route('plants.index'))->with('message', 'Plant created successfully!');
 		}
