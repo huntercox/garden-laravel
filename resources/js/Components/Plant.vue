@@ -12,8 +12,13 @@ import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 dayjs.extend(relativeTime);
 
+// IsToday
+import isToday from 'dayjs/plugin/isToday';
+dayjs.extend(isToday);
+
 // Formatting
 import localizedFormat from 'dayjs/plugin/localizedFormat';
+import { onMounted } from 'vue';
 dayjs.extend(localizedFormat)
 
 const props = defineProps(['plant']);
@@ -29,6 +34,14 @@ const form = useForm({
 });
 
 const editing = ref(false);
+
+const harvestDate = ref(dayjs(props.plant.harvest_date));
+const harvestDay = ref(false);
+
+onMounted(() => {
+	harvestDay.value = harvestDate.value.isToday()
+})
+
 </script>
 
 <template>
@@ -113,8 +126,10 @@ const editing = ref(false);
 
 						<p class="py-1 px-2 border-solid border-2 border-green-600 rounded mt-4 mt-4 text-lg text-gray-900"><span
 								class="block text-sm font-black text-green-600">Est. Harvest
-								Date:</span>
+								Date:
+								<strong v-if="harvestDay" class="text-gray-900 font-black">TODAY!</strong></span>
 							{{ dayjs(plant.harvest_date).format('LL') }}
+
 						</p>
 					</div>
 
