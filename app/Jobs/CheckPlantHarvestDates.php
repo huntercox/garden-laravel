@@ -33,7 +33,7 @@ class CheckPlantHarvestDates implements ShouldQueue
 	{
 		$today = Carbon::today('America/Vancouver');
 
-		Plant::with('user')->whereDate('harvest_date', $today)->get()->each(function ($plant) {
+		Plant::with('user')->whereDate('harvest_date', '<=', $today)->get()->each(function ($plant) {
 			if ($plant->user) {
 				Mail::to($plant->user->email)->send(new PlantReadyForHarvest($plant));
 			}
