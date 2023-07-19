@@ -106,10 +106,19 @@ const showingNavigationDropdown = ref(false);
 				</div>
 
 				<!-- Responsive Navigation Menu -->
-				<div :class="{ block: showingNavigationDropdown, hidden: !showingNavigationDropdown }" class="sm:hidden">
+				<div :class="{ block: showingNavigationDropdown, hidden: !showingNavigationDropdown }"
+					class="sm:hidden bg-gray-100 border-b border-green-100">
 					<div class="pt-2 pb-3 space-y-1">
 						<ResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
 							Dashboard
+						</ResponsiveNavLink>
+
+						<ResponsiveNavLink :href="route('plants.create')" :active="route().current('plants.create')">
+							Add a Plant
+						</ResponsiveNavLink>
+
+						<ResponsiveNavLink :href="route('plants.index')" :active="route().current('plants.index')">
+							Plants
 						</ResponsiveNavLink>
 					</div>
 
