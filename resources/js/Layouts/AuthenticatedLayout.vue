@@ -20,9 +20,9 @@ const showingNavigationDropdown = ref(false);
 						<div class="flex">
 							<!-- Logo -->
 							<div class="shrink-0 flex items-center">
-								<Link :href="route('dashboard')">
-								<div class="bg-white">
-									<p class="px-10 p-4 text-2xl">🌱</p>
+								<Link :href="route('dashboard')" class="h-full">
+								<div class="bg-white h-full">
+									<div class="block h-full text-xl px-2 md:px-3 md:text-2xl flex items-center">🌱</div>
 								</div>
 								</Link>
 							</div>
@@ -50,7 +50,21 @@ const showingNavigationDropdown = ref(false);
 										<span class="inline-flex rounded-md">
 											<button type="button"
 												class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
-												{{ $page.props.auth.user.name }}
+												<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-cog" width="24"
+													height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+													stroke-linecap="round" stroke-linejoin="round">
+													<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+													<path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"></path>
+													<path d="M6 21v-2a4 4 0 0 1 4 -4h2.5"></path>
+													<path d="M19.001 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
+													<path d="M19.001 15.5v1.5"></path>
+													<path d="M19.001 21v1.5"></path>
+													<path d="M22.032 17.25l-1.299 .75"></path>
+													<path d="M17.27 20l-1.3 .75"></path>
+													<path d="M15.97 17.25l1.3 .75"></path>
+													<path d="M20.733 20l1.3 .75"></path>
+												</svg>
+												<!-- {{ $page.props.auth.user.name }} -->
 
 												<svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
 													fill="currentColor">
@@ -75,7 +89,7 @@ const showingNavigationDropdown = ref(false);
 						<!-- Hamburger -->
 						<div class="-mr-2 flex items-center sm:hidden">
 							<button @click="showingNavigationDropdown = !showingNavigationDropdown"
-								class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
+								class="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
 								<svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
 									<path :class="{
 										hidden: showingNavigationDropdown,
