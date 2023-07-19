@@ -101,7 +101,7 @@ onMounted(() => {
 
 			<!-- Main Plant content -->
 			<div v-else>
-				<div class="flex">
+				<div class="flex flex-col sm:flex-row">
 					<div class="flex-initial w-full px-2">
 						<p class="text-3xl font-black text-gray-900">{{ plant.name }}</p>
 						<p class="text-lg text-gray-600">{{ plant.variety }}</p>
@@ -133,30 +133,31 @@ onMounted(() => {
 									TIME</strong></span>
 							{{ dayjs(plant.harvest_date).format('LL') }}
 						</p>
-
-						<p class="py-2 px-2 border-solid border-2 border-green-600 rounded mt-4 mt-4 text-lg text-gray-900 relative">
-							<span class="block text-sm font-black text-green-600">Stages of Growth:</span>
-						<ul v-if="plant.stages !== null || plant.stages.length !== 0" class="mt-4">
-							<li v-for="(stage, index) in plant.stages" :key="plant.stages" :stage="stage">
-								{{ stage.name }} Stage:
-
-								<p v-if="stage.watering" class="text-xs">
-									<strong class="">Watering Frequency:</strong> {{ stage.watering }}
-								</p>
-
-							</li>
-						</ul>
-						<ul v-else>
-							<li class="text-lg text-gray-600">No stages have been added yet.</li>
-						</ul>
-						</p>
-
 					</div>
 
-					<div class="flex-initial w-full p-2">
+					<div class="flex-initial w-full p-2 order-first sm:order-last">
 						<!-- <img v-bind:src="{'storage/'.plant.file_input" /> -->
 						<img class="w-full" v-bind:src="'storage/images/' + plant.file_input" />
 					</div>
+				</div>
+
+				<div class="w-full px-2">
+					<p class="py-2 px-2 border-solid border-2 border-green-600 rounded mt-4 mt-4 text-lg text-gray-900 relative">
+						<span class="block text-sm font-black text-green-600">Stages of Growth:</span>
+					<ul v-if="plant.stages !== null || plant.stages.length !== 0" class="mt-4">
+						<li v-for="(stage, index) in plant.stages" :key="plant.stages" :stage="stage">
+							{{ stage.name }} Stage:
+
+							<p v-if="stage.watering" class="text-xs">
+								<strong class="">Watering Frequency:</strong> {{ stage.watering }}
+							</p>
+
+						</li>
+					</ul>
+					<ul v-else>
+						<li class="text-lg text-gray-600">No stages have been added yet.</li>
+					</ul>
+					</p>
 				</div>
 
 			</div>
