@@ -90,6 +90,7 @@ class PlantController extends Controller
 			'days_to_mature' => 'required|integer|max_digits:3',
 			'quantity' => 'required|integer|max_digits:2',
 			'file_input' => 'image|mimes:jpeg,png,jpg,gif,svg',
+			'stages' => 'array'
 		]);
 
 		Storage::disk('public_images')->delete($plant->file_input);

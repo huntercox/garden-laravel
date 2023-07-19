@@ -21,6 +21,7 @@ return new class extends Migration
 			$table->tinyInteger('quantity');
 			$table->string('file_input');
 			$table->date('harvest_date');
+			$table->json('stages');
 			$table->timestamps();
 		});
 	}

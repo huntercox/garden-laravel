@@ -28,6 +28,7 @@ class PlantStoreRequest extends FormRequest
 			'days_to_mature' => ['required', 'integer', 'max_digits:3'],
 			'quantity' => ['required', 'integer', 'max_digits:2'],
 			'file_input' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
+			'stages' => ['array']
 		];
 	}
 
@@ -56,6 +57,7 @@ class PlantStoreRequest extends FormRequest
 			'file_input.image' => 'The image must be a valid image with one of the follow extensions JPEG, JPG, PNG, GIF or SVG.',
 			'file_input.mimes' => 'The image must be a valid image with one of the follow extensions JPEG, JPG, PNG, GIF or SVG.',
 			'file_input.max' => 'The file must not be larger than 2048MB.',
+			'stages.array' => 'The field "stageName" is invalid.',
 		];
 	}
 }

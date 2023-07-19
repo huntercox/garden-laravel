@@ -31,6 +31,7 @@ const form = useForm({
 	days_to_mature: props.plant.days_to_mature,
 	quantity: props.plant.quantity,
 	file_input: null,
+	stages: props.plant.stages,
 	_method: 'put',
 });
 
@@ -131,8 +132,11 @@ onMounted(() => {
 									class="px-2 py-1 mt-2 font-black bg-gray-900 text-white absolute top-2 right-1 text-lg">HARVEST
 									TIME</strong></span>
 							{{ dayjs(plant.harvest_date).format('LL') }}
-
 						</p>
+
+						<div v-for="(stage, index) in plant.stages" :key="plant.stages" :stage="stage">
+							Stage {{ index + 1 + ': ' + stage.stageName }}
+						</div>
 					</div>
 
 					<div class="flex-initial w-full p-2">

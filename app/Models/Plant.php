@@ -17,11 +17,13 @@ class Plant extends Model
 		'days_to_mature',
 		'quantity',
 		'file_input',
+		'stages',
 		'harvest_date',
 	];
 
 	protected $casts = [
 		'date_planted' => 'date',
+		'stages' => 'array'
 	];
 
 	public function user(): BelongsTo
