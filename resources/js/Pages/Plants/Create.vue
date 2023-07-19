@@ -50,35 +50,38 @@ const form = useForm({
 					<InputError :message="form.errors.variety" class="mt-2" />
 				</label>
 
-				<label for="date_planted">
-					Date Planted
-					<input v-model="form.date_planted" type="date" name="date_planted"
-						class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm text-gray-500 mb-3" />
-					<InputError :message="form.errors.date_planted" class="mt-2" />
-				</label>
-
-				<label for="days_to_mature">
-					Days to Maturity
-					<input v-model="form.days_to_mature" placeholder="Days till Maturity" type="number" name="days_to_mature"
-						class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm text-gray-500 mb-3" />
-					<InputError :message="form.errors.days_to_mature" class="mt-2" />
-				</label>
+				<div class="flex w-full">
+					<label for="days_to_mature" class="mr-4 w-full">
+						Days to Maturity
+						<input v-model="form.days_to_mature" placeholder="Days till Maturity" type="number" name="days_to_mature"
+							class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm text-gray-500 mb-3" />
+						<InputError :message="form.errors.days_to_mature" class="mt-2" />
+					</label>
 
 
+					<label for="quantity" class="w-full">
+						Quantity
+						<input v-model="form.quantity" placeholder="Quantity" type="number" name="quantity"
+							class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm text-gray-500 mb-3" />
+						<InputError :message="form.errors.quantity" class="mt-2" />
+					</label>
+				</div>
 
-				<label for="quantity">
-					Quantity
-					<input v-model="form.quantity" placeholder="Quantity" type="number" name="quantity"
-						class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm text-gray-500 mb-3" />
-					<InputError :message="form.errors.quantity" class="mt-2" />
-				</label>
+				<div class="flex">
+					<label for="date_planted" class="mr-4 w-full">
+						Date Planted
+						<input v-model="form.date_planted" type="date" name="date_planted"
+							class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm text-gray-500 mb-3" />
+						<InputError :message="form.errors.date_planted" class="mt-2" />
+					</label>
 
-				<label for="file_input">
-					Image
-					<input type="file" name="file_input" @input="form.file_input = $event.target.files[0]"
-						class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm text-gray-500 mb-3" />
-					<InputError :message="form.errors.file_input" class="mt-2" />
-				</label>
+					<label for="file_input" class="w-full">
+						Image
+						<input type="file" name="file_input" @input="form.file_input = $event.target.files[0]"
+							class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm text-gray-500 mb-3" />
+						<InputError :message="form.errors.file_input" class="mt-2" />
+					</label>
+				</div>
 
 				<PrimaryButton class="block mt-4 bg-green-500">Add Plant</PrimaryButton>
 			</form>
