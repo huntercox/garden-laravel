@@ -138,7 +138,7 @@ onMounted(() => {
 							<span class="block text-sm font-black text-green-600">Stages of Growth:</span>
 						<ul v-if="plant.stages !== null || plant.stages.length !== 0" class="mt-4">
 							<li v-for="(stage, index) in plant.stages" :key="plant.stages" :stage="stage">
-								{{ stage.stageName }} Stage:
+								{{ stage.name }} Stage:
 
 								<p v-if="stage.watering" class="text-xs">
 									<strong class="">Watering Frequency:</strong> {{ stage.watering }}

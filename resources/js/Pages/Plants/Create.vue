@@ -17,15 +17,24 @@ const form = useForm({
 	file_input: '',
 	stages: [
 		{
-			stageName: '',
+			name: '',
+			duration: '',
 			watering: '',
+			fertilizing: '',
+			spacing: '',
+			lighting: ''
 		}
 	]
 });
 
 function addStage(e) {
 	form.stages.push({
-		stageName: ''
+		name: '',
+		duration: '',
+		watering: '',
+		fertilizing: '',
+		spacing: '',
+		lighting: '',
 	})
 	e.preventDefault();
 }
@@ -92,28 +101,52 @@ function remove(index) {
 				</div>
 
 				<div v-for="stage in form.stages" :key="index">
-					<div class="flex justify-start">
-						<label>
-							Stage Name
-							<input v-model="stage.stageName" />
-						</label>
-						<label>
-							Watering Frequency
-							<input v-model="stage.watering" />
-						</label>
-						<button type="button" class="ml-2 rounded-md border px-3 py-2 bg-red-600 text-white" @click="remove(index)"
-							v-show="index != 0">
-							Remove
-						</button>
+					<div class="stage bg-gray-200 p-4">
+						<div class="mb-5 flex">
+							<button type="button" class="order-last ml-2 rounded-md border px-3 py-2 bg-red-600 text-white"
+								@click="remove(index)" v-show="index != 0">
+								Remove
+							</button>
+							<label for="name">
+								<span class="pr-3 font-black">Stage Name:</span>
+								<input v-model="stage.name" type="text" name="name" />
+							</label>
+						</div>
+						<div class="w-full mb-2">
+							<label for="duration">
+								<span class="pr-3 font-black">Duration:</span>
+								<input v-model="stage.duration" type="text" name="duration" class="w-full" />
+							</label>
+						</div>
+						<div class="flex">
+							<div class="w-full">
+								<label for="watering">
+									<span class="block font-black">Watering Schedule:</span>
+									<input v-model="stage.watering" type="text" name="watering" class="w-full mb-2" />
+								</label>
+								<label for="fertlizing">
+									<span class="block font-black">Fertilization Schedule:</span>
+									<input v-model="stage.fertilizing" type="text" name="fertlizing" class="w-full mb-2" />
+								</label>
+							</div>
+						</div>
+						<div class="w-full">
+							<div class="flex">
+								<label for="spacing" class="w-full mr-3">
+									<span class="block font-black">Spacing:</span>
+									<input v-model="stage.spacing" type="text" name="spacing" class="w-full mb-2" />
+								</label>
+								<label for="lighting" class="w-full">
+									<span class="block font-black">Lighting:</span>
+									<input v-model="stage.lighting" type="text" name="lighting" class="w-full mb-2" />
+								</label>
+							</div>
+						</div>
 					</div>
-
+					<button type="button" @click="addStage" class="px-5 py-3 mt-5 bg-gray-200">Add Stage</button>
 				</div>
 
-				<div>
-					<button type="button" @click="addStage">Add Stage</button>
-				</div>
-
-				<PrimaryButton class="block mt-4 bg-green-500">Add Plant</PrimaryButton>
+				<PrimaryButton class="block mt-10 bg-green-500 text-2xl">Add Plant</PrimaryButton>
 			</form>
 		</div>
 	</AuthenticatedLayout>
