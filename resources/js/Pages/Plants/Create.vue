@@ -50,7 +50,7 @@ const form = useForm({
 					<InputError :message="form.errors.variety" class="mt-2" />
 				</label>
 
-				<div class="flex w-full">
+				<div class="flex flex-col sm:flex-row">
 					<label for="days_to_mature" class="mr-4 w-full">
 						Days to Maturity
 						<input v-model="form.days_to_mature" placeholder="Days till Maturity" type="number" name="days_to_mature"
@@ -67,7 +67,7 @@ const form = useForm({
 					</label>
 				</div>
 
-				<div class="flex">
+				<div class="flex flex-col sm:flex-row">
 					<label for="date_planted" class="mr-4 w-full">
 						Date Planted
 						<input v-model="form.date_planted" type="date" name="date_planted"
