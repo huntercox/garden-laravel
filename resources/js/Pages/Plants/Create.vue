@@ -17,7 +17,8 @@ const form = useForm({
 	file_input: '',
 	stages: [
 		{
-			stageName: ''
+			stageName: '',
+			watering: '',
 		}
 	]
 });
@@ -92,7 +93,14 @@ function remove(index) {
 
 				<div v-for="stage in form.stages" :key="index">
 					<div class="flex justify-start">
-						<input v-model="stage.stageName" />
+						<label>
+							Stage Name
+							<input v-model="stage.stageName" />
+						</label>
+						<label>
+							Watering Frequency
+							<input v-model="stage.watering" />
+						</label>
 						<button type="button" class="ml-2 rounded-md border px-3 py-2 bg-red-600 text-white" @click="remove(index)"
 							v-show="index != 0">
 							Remove

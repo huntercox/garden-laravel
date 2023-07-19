@@ -134,9 +134,23 @@ onMounted(() => {
 							{{ dayjs(plant.harvest_date).format('LL') }}
 						</p>
 
-						<div v-for="(stage, index) in plant.stages" :key="plant.stages" :stage="stage">
-							Stage {{ index + 1 + ': ' + stage.stageName }}
-						</div>
+						<p class="py-2 px-2 border-solid border-2 border-green-600 rounded mt-4 mt-4 text-lg text-gray-900 relative">
+							<span class="block text-sm font-black text-green-600">Stages of Growth:</span>
+						<ul v-if="plant.stages !== null || plant.stages.length !== 0" class="mt-4">
+							<li v-for="(stage, index) in plant.stages" :key="plant.stages" :stage="stage">
+								{{ stage.stageName }} Stage:
+
+								<p v-if="stage.watering" class="text-xs">
+									<strong class="">Watering Frequency:</strong> {{ stage.watering }}
+								</p>
+
+							</li>
+						</ul>
+						<ul v-else>
+							<li class="text-lg text-gray-600">No stages have been added yet.</li>
+						</ul>
+						</p>
+
 					</div>
 
 					<div class="flex-initial w-full p-2">
