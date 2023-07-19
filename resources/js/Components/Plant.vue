@@ -46,7 +46,7 @@ onMounted(() => {
 </script>
 
 <template>
-	<div class="p-2 pt-4 flex space-x-2 bg-green-100 border-solid border-green-500 border-2">
+	<div class="p-2 pt-4 flex space-x-2 bg-green-100 border-solid border-green-500 border-2 border-top-4 mb-2">
 		<div class="flex-1">
 			<form v-if="editing"
 				@submit.prevent="form.post(route('plants.update', plant.id), { onSuccess: () => editing = false })">
