@@ -85,7 +85,7 @@ function remove(index) {
 				</div>
 
 				<div class="flex flex-col sm:flex-row">
-					<label for="date_planted" class="mr-4 w-full">
+					<label for="date_planted" class="m`r-4 w-full">
 						Date Planted
 						<input v-model="form.date_planted" type="date" name="date_planted"
 							class="block w-full border-gray-300 focus:border-green-300 focus:ring focus:ring-green-200 focus:ring-opacity-50 rounded-md shadow-sm text-gray-500 mb-3" />
@@ -100,7 +100,7 @@ function remove(index) {
 					</label>
 				</div>
 
-				<div v-for="stage in form.stages" :key="index">
+				<div v-for="(stage, index) in form.stages" :key="index">
 					<div class="stage bg-gray-200 p-4 mt-5 border-solid border-2 border-gray-400 relative">
 						<div class="mb-5 flex">
 							<button type="button" class="order-last ml-2 absolute top-0 right-0 hover:text-white,bg-black"
@@ -114,24 +114,24 @@ function remove(index) {
 									</svg>
 								</div>
 							</button>
-							<label for="name" class="flex">
+							<label :for="`name${index + 1}`" class="flex">
 								<p class="pr-3 font-black w-1/2 text-lg">Stage Name:</p>
-								<input v-model="stage.name" type="text" name="name"
+								<input v-model="stage.name" type="text" :name="`name${index + 1}`"
 									class="w-full border-gray-300 focus:border-green-300 focus:ring focus:ring-green-300 focus:ring-opacity-50 rounded-md shadow-sm text-gray-500 mb-3 mt-1" />
 							</label>
 						</div>
 						<div class="w-full mb-2">
-							<label for="duration">
+							<label :for="`duration${index + 1}`">
 								<span class="pr-3 font-black">Duration:</span>
-								<input v-model="stage.duration" type="text" name="duration"
+								<input v-model="stage.duration" type="text" :name="`duration${index + 1}`"
 									class="w-full border-gray-300 focus:border-green-300 focus:ring focus:ring-green-300 focus:ring-opacity-50 rounded-md shadow-sm text-gray-500 mb-3 mt-1" />
 							</label>
 						</div>
 						<div class="flex">
 							<div class="w-full">
-								<label for="watering">
+								<label :for="`watering${index + 1}`">
 									<span class="block font-black">Watering Schedule:</span>
-									<input v-model="stage.watering" type="text" name="watering"
+									<input v-model="stage.watering" type="text" :name="`watering${index + 1}`"
 										class="w-full border-gray-300 focus:border-green-300 focus:ring focus:ring-green-300 focus:ring-opacity-50 rounded-md shadow-sm text-gray-500 mb-3 mt-1" />
 								</label>
 								<label for="fertlizing">
