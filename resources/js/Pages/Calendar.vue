@@ -30,7 +30,6 @@ const calendarOptions = ref({
 		<template #header>
 			<h2 class="font-semibold text-xl text-gray-800 leading-tight">Calendar</h2>
 		</template>
-		{{ events }}
 		<div class="max-w-4xl mx-auto p-4 sm:p-6 lg:p-8">
 			<div class="mt-6 shadow-sm rounded-lg">
 				<FullCalendar :options="calendarOptions" />
