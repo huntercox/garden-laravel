@@ -137,7 +137,8 @@ onMounted(() => {
 
 					<div class="flex-initial w-full p-2 order-first sm:order-last">
 						<!-- <img v-bind:src="{'storage/'.plant.file_input" /> -->
-						<img class="w-full" v-bind:src="'storage/images/' + plant.file_input" />
+
+						<img class="w-full" v-bind:src="'/storage/images/' + plant.file_input" />
 					</div>
 				</div>
 
