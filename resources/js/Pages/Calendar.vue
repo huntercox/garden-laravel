@@ -1,14 +1,22 @@
 <script setup>
 import FullCalendar from '@fullcalendar/vue3';
 import dayGridPlugin from '@fullcalendar/daygrid';
+import interactionPlugin from '@fullcalendar/interaction';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head } from '@inertiajs/vue3';
 import { ref } from 'vue';
 
+function handleDateClick(arg) {
+	alert('date click! ' + arg.dateStr)
+}
 const calendarOptions = ref({
-	plugins: [dayGridPlugin],
+	plugins: [dayGridPlugin, interactionPlugin],
 	initialView: 'dayGridMonth',
-	// Add other options as needed
+	dateClick: handleDateClick,
+	events: [
+		{ title: 'event 1', date: '2023-07-01' },
+		{ title: 'event 2', date: '2023-07-02' }
+	]
 });
 </script>
 <template>
