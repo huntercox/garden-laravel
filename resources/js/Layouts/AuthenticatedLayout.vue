@@ -32,6 +32,11 @@ const showingNavigationDropdown = ref(false);
 								<NavLink :href="route('dashboard')" :active="route().current('dashboard')" class="text-white">
 									Dashboard
 								</NavLink>
+
+								<NavLink :href="route('about')" :active="route().current('about')" class="text-white">
+									About
+								</NavLink>
+
 								<NavLink :href="route('plants.create')" :active="route().current('plants.create')" class="text-white">
 									Add a Plant
 								</NavLink>

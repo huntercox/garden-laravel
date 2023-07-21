@@ -38,7 +38,7 @@ Route::resource('plants', PlantController::class)
 
 
 
-Route::inertia('/about', 'About')->middleware(['auth', 'verified']);
+Route::inertia('/about', 'About')->name('about')->middleware(['auth', 'verified']);
 
 
 Route::middleware('auth')->group(function () {
