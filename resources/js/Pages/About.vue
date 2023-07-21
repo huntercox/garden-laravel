@@ -15,7 +15,20 @@ defineProps(['plants'], { message: String });
 		</template>
 		<div class="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
 			<div class="mt-6 shadow-sm rounded-lg divide-y">
-				<Plant v-for="plant in plants" :key="plant.id" :plant="plant" />
+				<article>
+					<h1 class="text-3xl mb-5">About this app...</h1>
+					<p class="text-md">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aspernatur ducimus doloremque
+						similique eius ex hic ullam porro itaque veritatis odio nihil, voluptates temporibus delectus, cum minus
+						pariatur a consequatur exercitationem.
+						<br /><br />
+						Quae dolores hic sed architecto aliquam velit aut deserunt labore repellendus odit esse autem aspernatur quo,
+						ipsum illo voluptas quidem ad deleniti dolore sunt iste totam assumenda alias? Id, reprehenderit possimus.
+						Eius
+						rerum nihil deleniti! Aliquam aut quaerat nulla repellat soluta quibusdam tempore iste! Modi, laudantium quod
+						esse reiciendis libero officia ex error atque, autem suscipit doloribus voluptatibus qui iusto labore quas
+						incidunt eligendi nisi nulla. Alias amet qui possimus ea magni.
+					</p>
+				</article>
 			</div>
 		</div>
 	</AuthenticatedLayout>
