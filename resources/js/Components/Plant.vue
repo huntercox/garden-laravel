@@ -107,7 +107,7 @@ onMounted(() => {
 						<p class="text-lg text-gray-600">{{ plant.variety }}</p>
 
 						<div class="flex">
-							<p class="py-1 px-2 border-solid border-2 border-green-600 rounded mt-4 mt-4 text-lg text-gray-900"><span
+							<p class="py-1 px-2 border-solid border-2 border-green-600 rounded mt-4 text-lg text-gray-900"><span
 									class="block text-sm font-black text-green-600">Time to
 									Maturity</span>
 								{{ plant.days_to_mature }} days
