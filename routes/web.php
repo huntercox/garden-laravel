@@ -37,6 +37,9 @@ Route::resource('plants', PlantController::class)
 	->middleware(['auth', 'verified']);
 
 
+Route::inertia('/about', 'About')->middleware(['auth', 'verified']);
+
+
 Route::middleware('auth')->group(function () {
 	Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
 	Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
