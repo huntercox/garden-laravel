@@ -1,6 +1,7 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import Plant from '@/Components/Plant.vue';
+import PlantCard from '@/Components/PlantCard.vue';
 import InputError from '@/Components/InputError.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import { Head } from '@inertiajs/vue3';
@@ -24,7 +25,8 @@ defineProps(['plants'], { message: String });
 		</template>
 		<div class="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
 			<div class="mt-6 shadow-sm rounded-lg divide-y">
-				<Plant v-for="plant in plants" :key="plant.id" :plant="plant" />
+				<!-- <Plant v-for="plant in plants" :key="plant.id" :plant="plant" /> -->
+				<PlantCard v-for="plant in plants" :key="plant.id" :plant="plant" />
 			</div>
 		</div>
 	</AuthenticatedLayout>
