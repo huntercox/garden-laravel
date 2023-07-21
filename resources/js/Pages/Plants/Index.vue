@@ -24,7 +24,7 @@ defineProps(['plants'], { message: String });
 			<h2 class="font-semibold text-xl text-gray-800 leading-tight">Plants</h2>
 		</template>
 		<div class="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
-			<div class="mt-6 shadow-sm rounded-lg divide-y">
+			<div class="mt-6 shadow-sm rounded-lg grid grid-cols-2 gap-3">
 				<!-- <Plant v-for="plant in plants" :key="plant.id" :plant="plant" /> -->
 				<PlantCard v-for="plant in plants" :key="plant.id" :plant="plant" />
 			</div>

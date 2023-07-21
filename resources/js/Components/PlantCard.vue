@@ -29,5 +29,9 @@ onMounted(() => {
 
 
 <template>
-	<a :href="`/plants/${plant.id}`">{{ plant.name }}</a>
+	<div class="bg-green-100 border-green-600 border-2 w-full">
+		<a :href="route('plants.show', plant.id)" class="text-green-900 font-black hover:text-green-700 p-2 block">{{
+			plant.name
+		}}</a>
+	</div>
 </template>
