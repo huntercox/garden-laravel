@@ -37,6 +37,10 @@ const showingNavigationDropdown = ref(false);
 									About
 								</NavLink>
 
+								<NavLink :href="route('calendar')" :active="route().current('calendar')" class="text-white">
+									Calendar
+								</NavLink>
+
 								<NavLink :href="route('plants.create')" :active="route().current('plants.create')" class="text-white">
 									Add a Plant
 								</NavLink>

@@ -40,6 +40,10 @@ Route::resource('plants', PlantController::class)
 
 Route::inertia('/about', 'About')->name('about')->middleware(['auth', 'verified']);
 
+Route::get('/calendar', function () {
+	return Inertia::render('Calendar');
+})->name('calendar')->middleware(['auth', 'verified']);
+
 
 Route::middleware('auth')->group(function () {
 	Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
