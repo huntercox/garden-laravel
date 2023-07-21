@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PlantController;
+use App\Http\Controllers\CalendarController;
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
@@ -40,9 +41,11 @@ Route::resource('plants', PlantController::class)
 
 Route::inertia('/about', 'About')->name('about')->middleware(['auth', 'verified']);
 
-Route::get('/calendar', function () {
-	return Inertia::render('Calendar');
-})->name('calendar')->middleware(['auth', 'verified']);
+
+
+Route::get('/calendar', [CalendarController::class, 'index'])
+	->name('calendar')
+	->middleware(['auth', 'verified']);
 
 
 Route::middleware('auth')->group(function () {
