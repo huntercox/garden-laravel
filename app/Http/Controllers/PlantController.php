@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Stage;
 use App\Models\Plant;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -41,21 +42,41 @@ class PlantController extends Controller
 	{
 		$validated = $request->validated();
 
+		// CALCULATE HARVEST DATE
 		$date_planted = Carbon::createFromDate($request->date_planted);
 		$days_to_mature = $request->days_to_mature;
-
 		$harvest_date = $date_planted->addDays($days_to_mature);
 
-		if (!$validated) {
-			return redirect(route('plants.create'));
-		} else {
-			$path = $request->file_input->store('', 'public_images');
-			$validated['file_input'] = $path;
-			$validated['harvest_date'] = $harvest_date;
+		// STORE IMAGE UPLOAD
+		$path = $request->file_input->store('', 'public_images');
 
-			$request->user()->plants()->create($validated);
-			return redirect(route('plants.index'))->with('message', 'Plant created successfully!');
+		// ADD "file_input" BACK TO ARRAY & STORE TMP FILE PATH
+		$validated['file_input'] = $path;
+
+		// ADD "harvest_date" BACK TO ARRAY
+		$validated['harvest_date'] = $harvest_date;
+
+
+		// Exclude 'stages' from the plant creation
+		$plantData = array_diff_key($validated, array_flip(['stages']));
+
+		$plant = $request->user()->plants()->create($plantData);
+
+		foreach ($request->stages as $stageData) {
+			// Find or create the stage
+			$stage = Stage::firstOrCreate(['name' => $stageData['name']]);
+
+			// Attach the stage to the plant
+			$plant->stages()->attach($stage->id, [
+				'spacing' => $stageData['spacing'],
+				'duration' => $stageData['duration'],
+				'lighting' => $stageData['lighting'],
+				'watering' => $stageData['watering'],
+				'fertilizing' => $stageData['fertilizing']
+			]);
 		}
+
+		return redirect(route('plants.index'));
 	}
 
 	/**
@@ -63,9 +84,8 @@ class PlantController extends Controller
 	 */
 	public function show(Plant $plant)
 	{
-		$plant->load('user:id,name');
+
 		return Inertia::render('Plants/Show', [
-			// 'plant' => $plant
 			'plant' => $plant,
 		]);
 	}

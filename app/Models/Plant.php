@@ -17,17 +17,23 @@ class Plant extends Model
 		'days_to_mature',
 		'quantity',
 		'file_input',
-		'stages',
 		'harvest_date',
 	];
 
 	protected $casts = [
 		'date_planted' => 'date',
-		'stages' => 'array'
 	];
 
 	public function user(): BelongsTo
 	{
 		return $this->belongsTo(User::class);
+	}
+
+
+	public function stages()
+	{
+		return $this->belongsToMany(Stage::class, 'plant_stage')
+			->withPivot('spacing', 'duration', 'lighting', 'watering', 'fertilizing')
+			->withTimestamps();
 	}
 }
