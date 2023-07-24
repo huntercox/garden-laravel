@@ -31,7 +31,7 @@ const form = useForm({
 	days_to_mature: props.plant.days_to_mature,
 	quantity: props.plant.quantity,
 	file_input: null,
-	stages: props.plant.stages,
+	// stages: props.plant.stages,
 	_method: 'put',
 });
 
@@ -145,7 +145,7 @@ onMounted(() => {
 				<div class="w-full px-2">
 					<p class="py-2 px-2 border-solid border-2 border-green-600 rounded mt-4 mt-4 text-lg text-gray-900 relative">
 						<span class="block text-sm font-black text-green-600">Stages of Growth:</span>
-					<ul v-if="plant.stages !== null || plant.stages.length !== 0" class="mt-4">
+						<!-- <ul v-if="plant.stages !== null || plant.stages.length !== 0" class="mt-4">
 						<li v-for="(stage, index) in  plant.stages " :key="plant.stages" :stage="stage">
 							<p>{{ stage.name }} Stage: <span v-if="stage.duration">( {{ stage.duration }} )</span></p>
 
@@ -166,7 +166,7 @@ onMounted(() => {
 					</ul>
 					<ul v-else>
 						<li class="text-lg text-gray-600">No stages have been added yet.</li>
-					</ul>
+					</ul> -->
 					</p>
 				</div>
 
@@ -176,7 +176,7 @@ onMounted(() => {
 				<div>
 					<small v-if="plant.created_at !== plant.updated_at" class="text-sm text-gray-600"> &middot; edited</small>
 				</div>
-				<Dropdown v-if="plant.user.id === $page.props.auth.user.id">
+				<Dropdown v-if="plant?.user?.id === $page?.props?.auth?.user?.id">
 					<template #trigger>
 						<button>
 							<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400" viewBox="0 0 20 20"

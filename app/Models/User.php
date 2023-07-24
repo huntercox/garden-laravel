@@ -52,4 +52,9 @@ class User extends Authenticatable
 	{
 		return $this->hasMany(Plant::class);
 	}
+
+	public function stages(): HasMany
+	{
+		return $this->hasMany(Stage::class);
+	}
 }

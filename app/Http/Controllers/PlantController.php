@@ -82,11 +82,12 @@ class PlantController extends Controller
 	/**
 	 * Display the specified resource.
 	 */
-	public function show(Plant $plant)
+	public function show(Plant $plant, Stage $stage)
 	{
 
 		return Inertia::render('Plants/Show', [
 			'plant' => $plant,
+			'stage' => $stage,
 		]);
 	}
 
