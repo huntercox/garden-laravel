@@ -29,12 +29,12 @@ const form = useForm({
 
 function addStage(e) {
 	form.stages.push({
-		name: '',
-		duration: '',
-		watering: '',
-		fertilizing: '',
-		spacing: '',
-		lighting: '',
+		name: 'name default...',
+		duration: 'duration default...',
+		watering: 'watering default...',
+		fertilizing: 'fertilizing default...',
+		spacing: 'spacing default...',
+		lighting: 'lighting default...'
 	})
 	e.preventDefault();
 }
@@ -86,7 +86,7 @@ function remove(index) {
 				</div>
 
 				<div class="flex flex-col sm:flex-row">
-					<label for="date_planted" class="m`r-4 w-full">
+					<label for="date_planted" class="mr-4 w-full">
 						Date Planted
 						<input v-model="form.date_planted" type="date" name="date_planted"
 							class="block w-full border-gray-300 focus:border-green-300 focus:ring focus:ring-green-200 focus:ring-opacity-50 rounded-md shadow-sm text-gray-500 mb-3" />

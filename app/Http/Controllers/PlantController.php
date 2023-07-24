@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Stage;
 use App\Models\Plant;
+use App\Models\PlantStage;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -66,14 +67,18 @@ class PlantController extends Controller
 			// Find or create the stage
 			$stage = Stage::firstOrCreate(['name' => $stageData['name']]);
 
-			// Attach the stage to the plant
-			$plant->stages()->attach($stage->id, [
+			// Create a new PlantStage
+			$plantStage = new PlantStage([
 				'spacing' => $stageData['spacing'],
 				'duration' => $stageData['duration'],
 				'lighting' => $stageData['lighting'],
 				'watering' => $stageData['watering'],
-				'fertilizing' => $stageData['fertilizing']
+				'fertilizing' => $stageData['fertilizing'],
+				'stage_id' => $stage->id,
 			]);
+
+			// Save the new PlantStage through the Plant's stages relationship
+			$plant->stages()->save($plantStage);
 		}
 
 		return redirect(route('plants.index'));
@@ -82,12 +87,13 @@ class PlantController extends Controller
 	/**
 	 * Display the specified resource.
 	 */
-	public function show(Plant $plant, Stage $stage)
+	public function show(Plant $plant)
 	{
+		$plantId = $plant['id'];
+		$plant = Plant::with(['stages'])->find($plantId);
 
 		return Inertia::render('Plants/Show', [
-			'plant' => $plant,
-			'stage' => $stage,
+			'plant' => $plant
 		]);
 	}
 
