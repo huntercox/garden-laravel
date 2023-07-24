@@ -17,12 +17,12 @@ const form = useForm({
 	file_input: '',
 	stages: [
 		{
-			name: '',
-			duration: '',
-			watering: '',
-			fertilizing: '',
-			spacing: '',
-			lighting: ''
+			name: 'name default...',
+			duration: 'duration default...',
+			watering: 'watering default...',
+			fertilizing: 'fertilizing default...',
+			spacing: 'spacing default...',
+			lighting: 'lighting default...'
 		}
 	]
 });
@@ -42,6 +42,7 @@ function addStage(e) {
 function remove(index) {
 	form.stages.splice(index, 1);
 }
+
 </script>
 
 <template>
@@ -136,7 +137,7 @@ function remove(index) {
 								</label>
 								<label for="fertlizing">
 									<span class="block font-black">Fertilization Schedule:</span>
-									<input v-model="stage.fertilizing" type="text" name="fertlizing"
+									<input v-model="stage.fertilizing" type="text" :name="`fertlizing${index + 1}`"
 										class="w-full border-gray-300 focus:border-green-300 focus:ring focus:ring-green-300 focus:ring-opacity-50 rounded-md shadow-sm text-gray-500 mb-3 mt-1" />
 								</label>
 							</div>
@@ -145,12 +146,12 @@ function remove(index) {
 							<div class="flex">
 								<label for="spacing" class="w-full mr-3">
 									<span class="block font-black">Spacing:</span>
-									<input v-model="stage.spacing" type="text" name="spacing"
+									<input v-model="stage.spacing" type="text" :name="`spacing${index + 1}`"
 										class="w-full border-gray-300 focus:border-green-300 focus:ring focus:ring-green-300 focus:ring-opacity-50 rounded-md shadow-sm text-gray-500 mb-3 mt-1" />
 								</label>
 								<label for="lighting" class="w-full">
 									<span class="block font-black">Lighting:</span>
-									<input v-model="stage.lighting" type="text" name="lighting"
+									<input v-model="stage.lighting" type="text" :name="`lighting${index + 1}`"
 										class="w-full border-gray-300 focus:border-green-300 focus:ring focus:ring-green-300 focus:ring-opacity-50 rounded-md shadow-sm text-gray-500 mb-3 mt-1" />
 								</label>
 							</div>
