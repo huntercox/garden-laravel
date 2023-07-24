@@ -21,7 +21,10 @@ const calendarOptions = ref({
 	plugins: [dayGridPlugin, interactionPlugin],
 	initialView: 'dayGridMonth',
 	dateClick: handleDateClick,
-	events: events
+	events: events,
+	eventContent: function (arg) {
+		return { html: `<div class="bg-green-600 text-white p-2">🥬 ${arg.event.title}</div>` } // Here you can add your custom HTML and Tailwind classes
+	}
 });
 </script>
 <template>
