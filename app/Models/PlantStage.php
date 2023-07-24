@@ -16,6 +16,8 @@ class PlantStage extends Model
 		'lighting',
 		'watering',
 		'fertilizing',
+		'stage_id',
+		'plant_id',
 	];
 
 	public function plant(): BelongsTo

@@ -67,6 +67,8 @@ class PlantController extends Controller
 			// Find or create the stage
 			$stage = Stage::firstOrCreate(['name' => $stageData['name']]);
 
+			// dd($stage);
+
 			// Create a new PlantStage
 			$plantStage = new PlantStage([
 				'spacing' => $stageData['spacing'],
@@ -90,7 +92,7 @@ class PlantController extends Controller
 	public function show(Plant $plant)
 	{
 		$plantId = $plant['id'];
-		$plant = Plant::with(['stages'])->find($plantId);
+		$plant = Plant::with(['stages.stage'])->find($plantId);
 
 		return Inertia::render('Plants/Show', [
 			'plant' => $plant

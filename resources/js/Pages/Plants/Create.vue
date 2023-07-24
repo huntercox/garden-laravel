@@ -22,7 +22,7 @@ const form = useForm({
 			watering: 'watering default...',
 			fertilizing: 'fertilizing default...',
 			spacing: 'spacing default...',
-			lighting: 'lighting default...'
+			lighting: 'lighting default...',
 		}
 	]
 });

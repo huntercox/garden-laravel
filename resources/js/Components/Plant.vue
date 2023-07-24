@@ -146,8 +146,9 @@ onMounted(() => {
 					<p class="py-2 px-2 border-solid border-2 border-green-600 rounded mt-4 mt-4 text-lg text-gray-900 relative">
 						<span class="block text-sm font-black text-green-600">Stages of Growth:</span>
 					<ul v-if="plant.stages !== null || plant.stages.length !== 0" class="mt-4">
-						<li v-for="(stage, index) in  plant.stages " :key="plant.stages" :stage="stage">
-							<p>{{ stage.name }} Stage: <span v-if="stage.duration">( {{ stage.duration }} )</span></p>
+						<li v-for="(stage, index) in  plant.stages" :key="plant.stages" :stage="stage">
+							<p>{{ plant.stages[index].stage.name }} Stage: <span v-if="stage.duration">( {{ stage.duration }}
+									)</span></p>
 
 							<p v-if="stage.watering" class="text-xs">
 								<strong class="">Watering Schedule:</strong> {{ stage.watering }}
